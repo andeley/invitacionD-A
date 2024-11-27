@@ -136,7 +136,10 @@
         }
     </style>
 </head>
-<body>
+<body onclick="playAudio()">
+    <audio id="aud1" loop>
+        <source src="./audio/Lunes.mp3" type="audio/mpeg">
+    </audio>
     <div class="hero">
         <h1>¡Nos Casamos!</h1>
         <p>Ángel David & Angie Madeleyne</p>
@@ -148,11 +151,6 @@
         <p><strong>Lugar:</strong> [Ubicación del evento]</p>
         <p>Únete a nosotros en este día tan especial para celebrar el amor y la felicidad.</p>
 
-         <!-- Botón para reproducir el audio -->
-         <button id="playButton">Reproducir Música</button>
-
-         <!-- Elemento de audio -->
-         <audio id="audio" src="./audio/song2.weba" type="audio/webm"></audio>
 
         <div class="gallery">
             <img src="./images/1728014497434.jpg" alt="Foto 1">
@@ -173,5 +171,12 @@
     <footer>
         <p>Gracias por ser parte de este día tan especial. ¡Te esperamos con mucho cariño!</p>
     </footer>
+
+    <script>
+        function playAudio(){
+            document.getElementById("aud1").play();
+
+        }
+    </script>
 </body>
 </html>
