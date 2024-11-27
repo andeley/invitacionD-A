@@ -137,11 +137,6 @@
     </style>
 </head>
 <body>
-    <audio autoplay loop>
-        <source src="./audio/song.mp3" type="audio/mpeg">
-        Tu navegador no soporta reproducción de audio.
-    </audio>
-
     <div class="hero">
         <h1>¡Nos Casamos!</h1>
         <p>Ángel David & Angie Madeleyne</p>
@@ -152,6 +147,12 @@
         <p><strong>Fecha:</strong> [Fecha de la boda]</p>
         <p><strong>Lugar:</strong> [Ubicación del evento]</p>
         <p>Únete a nosotros en este día tan especial para celebrar el amor y la felicidad.</p>
+
+         <!-- Botón para reproducir el audio -->
+         <button id="playButton">Reproducir Música</button>
+
+         <!-- Elemento de audio -->
+         <audio id="audio" src="./audio/song.mp3" type="audio/mpeg"></audio>
 
         <div class="gallery">
             <img src="./images/1728014497434.jpg" alt="Foto 1">
