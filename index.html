@@ -15,6 +15,8 @@
             background-image: url('./images/fondo.jpg'); 
             background-size: cover;
             background-position: center; 
+            background-color: rgba(49, 48, 48, 0.1); /* Capa semitransparente */
+            background-blend-mode: overlay; /* Mezcla con la imagen de fondo */
         }
 
         .hero {
@@ -25,7 +27,7 @@
             justify-content: center;
             align-items: center;
             color: white;
-            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            text-shadow: 0 5px 10px rgb(41, 109, 173);
         }
         .imgNovios {
             width: 300px; /* Ajusta el ancho según sea necesario */
@@ -38,10 +40,17 @@
             animation: fadeIn 2s ease-in-out;
         }
 
-        .hero p {
+        .hero .ayd {
             font-size: 1.2em;
             margin-top: 10px;
             animation: fadeIn 3s ease-in-out;
+            color: #88a3d0;
+        }
+        .hero p .versiculo {
+            font-size: 1.2em;
+            margin-top: 10px;
+            animation: fadeIn 3s ease-in-out;
+            color: #111e33;
         }
 
         .content {
@@ -138,6 +147,60 @@
             from { transform: scale(0.8); }
             to { transform: scale(1); }
         }
+        .map-container {
+            width: 80%;
+            max-width: 800px;
+            height: 400px;
+            margin: 20px auto;
+            border: 5px solid #add8e6; /* Borde azul pastel */
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Iframe ajustado dentro del contenedor */
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        .carousel {
+        position: relative;
+        max-width: 350px;
+        margin: auto;
+        overflow: hidden;
+        border: 15px solid transparent;
+        border-image: url('./images/marco.jpg') 30 stretch; /* Imagen de borde */
+        border-radius: 25px;
+
+        }
+        .carousel-images {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+        }
+        .carousel-images img {
+        width: 100%;
+        }
+        .carousel-buttons {
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        transform: translateY(-50%);
+        }
+        .carousel-buttons button {
+        background-color: rgba(0, 0, 0, 0.5);
+        border: none;
+        color: white;
+        font-size: 18px;
+        padding: 10px;
+        cursor: pointer;
+        border-radius: 50%;
+        }
+        .carousel-buttons button:hover {
+        background-color: rgba(0, 0, 0, 0.8);
+        }
     </style>
 </head>
 <body onclick="playAudio()">
@@ -146,7 +209,13 @@
     </audio>
     <div class="hero">
         <h1>¡Nos Casamos!</h1>
-        <p>Ángel David & Angie Madeleyne</p>
+        <p class="ayd">Ángel David & Angie Madeleyne</p>
+        <p class="versiculo">¡Graba mi nombre en tu corazón! <br>
+        ¡Graba mi imagen en tu brazo! <br>
+        ¡Tan fuerte es el amor como la muerte! <br>
+        ¡Tan cierta es la pasión como la tumba! <br>
+        ¡El fuego del amor es una llama que Dios mismo ha encendido! <br>
+        Cantares: 8:6</p>
     </div>
     <img class="imgNovios" src="./images/image1.png" alt="Foto de los Novios">
     
@@ -154,15 +223,41 @@
     <div class="content">
         <h2>Detalles del Evento</h2>
         <p><strong>Fecha:</strong> 31 de Mayo </p>
+        <p><strong>Hora:</strong> 4:00 pm </p>
         <p><strong>Lugar:</strong>Terraza Lemaitré Club naval, Catagena de Indias</p>
-        <p>Únete a nosotros en este día tan especial para celebrar el amor y la felicidad.</p>
-
-
         <div class="gallery">
-            <img src="./images/1728333412717.jpg" alt="Foto 1">
+            <img src="./images/20231231_104452.jpg" alt="">
             <img src="./images/20231231_104452.jpg" alt="Foto 2">
             <img src="./images/20240106_110359.jpg" alt="Foto 3">
         </div>
+        <h1>Ubicación de nuestra boda</h1>
+        <div class="map-container">
+            <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3924.3856603782115!2d-75.5480767252008!3d10.390912389735385!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8ef62f46654ac155%3A0xae80dd34e5d10c23!2sClub%20Naval!5e0!3m2!1ses!2sco!4v1732838186451!5m2!1ses!2sco" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+        <p>Únete a nosotros en este día tan especial para celebrar el amor y la felicidad.</p>
+
+        <div class="carousel">
+            <div class="carousel-images">
+                <img src="./images/1728333412717.jpg" alt="Foto 1">
+                <img src="./images/20231231_104452.jpg" alt="Foto 2">
+                <img src="./images/20240106_110359.jpg" alt="Foto 3">
+            </div>
+            <div class="carousel-buttons">
+                <button id="prev">❮</button>
+                <button id="next">❯</button>
+            </div>
+        </div>
+    </div>
+    <div class="vestimenta">
+        <h2>Codigo de vestimenta</h2>
+        <p>Hombres</p>
+        <img src="./images/1728014497434.jpg" alt="Formal">
+        <p>Mujeres</p>
+        <img src="./images/1728333412717.jpg" alt="Formal">
     </div>
 
     <div class="rsvp-form">
@@ -183,6 +278,25 @@
             document.getElementById("aud1").play();
 
         }
+        const images = document.querySelector('.carousel-images');
+        const totalImages = images.children.length;
+        let index = 0;
+    
+        document.getElementById('next').addEventListener('click', () => {
+          index = (index + 1) % totalImages;
+          images.style.transform = `translateX(-${index * 100}%)`;
+        });
+    
+        document.getElementById('prev').addEventListener('click', () => {
+          index = (index - 1 + totalImages) % totalImages;
+          images.style.transform = `translateX(-${index * 100}%)`;
+        });
+    
+        // Cambio automático cada 3 segundos
+        setInterval(() => {
+          index = (index + 1) % totalImages;
+          images.style.transform = `translateX(-${index * 100}%)`;
+        }, 3000);
     </script>
 </body>
 </html>
