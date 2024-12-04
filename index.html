@@ -12,11 +12,14 @@
             background-color: #f9f6f2; /* Fondo romántico */
             color: #4a4a4a;
             text-align: center;
-            background-image: url('./images/fondo.jpg'); 
+            background-image: url('./images/fondo.jpg');
             background-size: cover;
             background-position: center; 
-          /*  background-color: rgba(49, 48, 48, 0.1); /* Capa semitransparente */
-          /*  background-blend-mode: overlay; /* Mezcla con la imagen de fondo */
+            background-color: rgba(49, 48, 48, 0.1); /* Capa semitransparente */
+            background-blend-mode: overlay; /* Mezcla con la imagen de fondo */
+            background-attachment: fixed; /* La imagen se mantiene fija al hacer scroll */
+            height: 100vh; /* Ocupa toda la altura de la ventana */
+            width: 100%; /* Ocupa todo el ancho */
         }
 
         .hero {
@@ -33,7 +36,6 @@
             width: 300px; /* Ajusta el ancho según sea necesario */
         
         }
-
         .hero h1 {
             font-size: 3em;
             margin: 0;
@@ -44,7 +46,7 @@
             font-size: 1.2em;
             margin-top: 10px;
             animation: fadeIn 3s ease-in-out;
-            color: #88a3d0;
+            color: #f4f6f9;
         }
         .hero p .versiculo {
             font-size: 1.2em;
@@ -170,7 +172,7 @@
         margin: auto;
         overflow: hidden;
         border: 15px solid transparent;
-        border-image: url('./images/marco.jpg') 30 stretch; /* Imagen de borde */
+        border-image: url('./images/fondo2.jpeg') 30 stretch; /* Imagen de borde */
         border-radius: 25px;
 
         }
@@ -201,6 +203,44 @@
         .carousel-buttons button:hover {
         background-color: rgba(0, 0, 0, 0.8);
         }
+        .location-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #87CEEB; /* Azul pastel */
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 50px;
+        }
+
+        .time-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .time {
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 5px 0;
+            color: #4682B4;
+        }
+
+        .label {
+            font-size: 1rem;
+            text-transform: uppercase;
+            color: #6c757d;
+        }
     </style>
 </head>
 <body onclick="playAudio()">
@@ -212,18 +252,33 @@
         <p class="ayd">Ángel David & Angie Madeleyne</p>
         <p class="versiculo">¡Graba mi nombre en tu corazón! <br>
         ¡Graba mi imagen en tu brazo! <br>
-        ¡Tan fuerte es el amor como la muerte! <br>
-        ¡Tan cierta es la pasión como la tumba! <br>
-        ¡El fuego del amor es una llama que Dios mismo ha encendido! <br>
-        Cantares: 8:6</p>
+        </p>
     </div>
-    <img class="imgNovios" src="./images/image1.png" alt="Foto de los Novios">
+   <!-- <img class="imgNovios" src="./images/image1.png" alt="Foto de los Novios">-->
     
 
     <div class="content">
         <h2>Detalles del Evento</h2>
         <p><strong>Fecha:</strong> 31 de Mayo </p>
         <p><strong>Hora:</strong> 4:00 pm </p>
+        <div class="countdown">
+            <div class="time-container">
+                <div class="label">Días</div>
+                <div class="time" id="days">00</div>
+            </div>
+            <div class="time-container">
+                <div class="label">Horas</div>
+                <div class="time" id="hours">00</div>
+            </div>
+            <div class="time-container">
+                <div class="label">Minutos</div>
+                <div class="time" id="minutes">00</div>
+            </div>
+            <div class="time-container">
+                <div class="label">Segundos</div>
+                <div class="time" id="seconds">00</div>
+            </div>
+        </div>
         <p><strong>Lugar:</strong>Terraza Lemaitré Club naval, Catagena de Indias</p>
         <div class="gallery">
             <img src="./images/20231231_104452.jpg" alt="">
@@ -231,13 +286,19 @@
             <img src="./images/20240106_110359.jpg" alt="Foto 3">
         </div>
         <h1>Ubicación de nuestra boda</h1>
-        <div class="map-container">
+         <!-- Botón para abrir la ubicación en Google Maps -->
+        <button 
+            class="location-button"
+            onclick="window.open('https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3924.3856603782115!2d-75.5480767252008!3d10.390912389735385!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8ef62f46654ac155%3A0xae80dd34e5d10c23!2sClub%20Naval!5e0!3m2!1ses!2sco!4v1732838186451!5m2!1ses!2sco', '_blank')">
+            Ver ubicación
+        </button>
+       <!-- <div class="map-container">
             <iframe 
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3924.3856603782115!2d-75.5480767252008!3d10.390912389735385!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8ef62f46654ac155%3A0xae80dd34e5d10c23!2sClub%20Naval!5e0!3m2!1ses!2sco!4v1732838186451!5m2!1ses!2sco" 
             loading="lazy" 
             referrerpolicy="no-referrer-when-downgrade">
             </iframe>
-        </div>
+        </div>-->
         <p>Únete a nosotros en este día tan especial para celebrar el amor y la felicidad.</p>
 
         <div class="carousel">
@@ -250,14 +311,18 @@
                 <button id="prev">❮</button>
                 <button id="next">❯</button>
             </div>
+            <p>¡Tan fuerte es el amor como la muerte! <br>
+                ¡Tan cierta es la pasión como la tumba! <br></p>
         </div>
     </div>
-    <div class="vestimenta">
+    <div class="content">
         <h2>Codigo de vestimenta</h2>
         <p>Hombres</p>
         <img src="./images/1728014497434.jpg" alt="Formal">
         <p>Mujeres</p>
         <img src="./images/1728333412717.jpg" alt="Formal">
+        <p>¡El fuego del amor es una llama que Dios mismo ha encendido! <br>
+            Cantares: 8:6</p>
     </div>
 
     <div class="rsvp-form">
@@ -297,6 +362,31 @@
           index = (index + 1) % totalImages;
           images.style.transform = `translateX(-${index * 100}%)`;
         }, 3000);
+    // Fecha de la boda
+    const weddingDate = new Date("2025-05-31T16:00:00").getTime(); // Cambia la fecha y hora aquí
+
+    const countdown = setInterval(() => {
+        const now = new Date().getTime();
+        const distance = weddingDate - now;
+
+        // Cálculo del tiempo restante
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Mostrar los resultados en los elementos correspondientes
+        document.getElementById("days").innerText = days < 10 ? '0' + days : days;
+        document.getElementById("hours").innerText = hours < 10 ? '0' + hours : hours;
+        document.getElementById("minutes").innerText = minutes < 10 ? '0' + minutes : minutes;
+        document.getElementById("seconds").innerText = seconds < 10 ? '0' + seconds : seconds;
+
+        // Si la cuenta regresiva ha terminado
+        if (distance < 0) {
+            clearInterval(countdown);
+            document.getElementById("timer").innerHTML = "¡La boda ha comenzado!";
+        }
+    }, 1000);
     </script>
 </body>
 </html>
