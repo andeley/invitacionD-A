@@ -246,8 +246,30 @@
             height: 100px;
         }
         .fecha {
-            width: 600px;
-            height: 600px;
+            width: 100%; /* Ancho completo de la pantalla */
+            max-width: 600px; /* Ancho máximo para pantallas grandes */
+            height: 350px; /* Altura fija inicial */
+            margin: 0 auto; /* Centrar en pantalla */
+            overflow: hidden; /* Oculta las partes de la imagen que sobresalgan */
+            position: relative;
+        }
+        .cfecha img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Asegura que la imagen se adapte sin deformarse */
+            object-position: center; 
+        }
+        /* Estilo responsivo para móviles */
+        @media (max-width: 768px) { /* Pantallas menores a 768px */
+            .image-container {
+                height: 200px; /* Reduce la altura en dispositivos móviles */
+            }
+        }
+
+        @media (max-width: 480px) { /* Pantallas menores a 480px */
+            .image-container {
+                height: 150px; /* Ajuste adicional para pantallas más pequeñas */
+            }
         }
     </style>
 </head>
@@ -267,7 +289,7 @@
     
 
     <div class="content">
-        <div>
+        <div class="cFecha">
             <img class="fecha" src="./images/fecha.png" alt="">
          </div>
         <div class="countdown">
