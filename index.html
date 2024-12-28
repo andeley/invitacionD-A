@@ -206,18 +206,6 @@
         .carousel-buttons button:hover {
         background-color: rgba(0, 0, 0, 0.8);
         }
-        .location-button {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #87CEEB; /* Azul pastel */
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            border: none;
-            cursor: pointer;
-        }
 
         .countdown {
             display: flex;
@@ -248,19 +236,34 @@
             width: 100px;
             height: 100px;
         }
+        .contfecha {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
         .fecha {
             width: 100%; /* Ancho completo de la pantalla */
-            max-width: 600px; /* Ancho máximo para pantallas grandes */
-            height: 350px; /* Altura fija inicial */
+            max-width: 100%; /* Ancho máximo para pantallas grandes */
+            height: auto; /* Altura fija inicial */
             margin: 0 auto; /* Centrar en pantalla */
             overflow: hidden; /* Oculta las partes de la imagen que sobresalgan */
-            position: relative;
+            
         }
-        .cfecha img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Asegura que la imagen se adapte sin deformarse */
-            object-position: center; 
+        .contfecha button {
+            position: absolute; /* Posicionar el botón sobre la imagen */
+            top: 65%; /* Centrar verticalmente */
+            left: 50%; /* Centrar horizontalmente */
+            transform: translate(-50%, -50%);
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #87CEEB; /* Azul pastel */
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            z-index: 1; /* Asegurar que el botón esté sobre la imagen */
         }
         /* Estilo responsivo para móviles */
         @media (max-width: 768px) { /* Pantallas menores a 768px */
@@ -292,8 +295,13 @@
     
 
     <div class="content">
-        <div class="cFecha">
+        <div class="contfecha">
             <img class="fecha" src="./images/fecha.png" alt="">
+            <button 
+                class="location-button"
+                onclick="window.open('https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3924.3856603782115!2d-75.5480767252008!3d10.390912389735385!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8ef62f46654ac155%3A0xae80dd34e5d10c23!2sClub%20Naval!5e0!3m2!1ses!2sco!4v1732838186451!5m2!1ses!2sco', '_blank')">
+                Ver ubicación
+            </button>
          </div>
         <div class="countdown">
             <div class="time-container">
@@ -313,26 +321,14 @@
                 <div class="time" id="seconds">00</div>
             </div>
         </div>
-        <br>
-        <br>
+    </div>
+    <div class="content">
         <div class="gallery">
             <img src="./images/20231231_104452.jpg" alt="">
             <img src="./images/20231231_104452.jpg" alt="Foto 2">
             <img src="./images/20240106_110359.jpg" alt="Foto 3">
         </div>
-         <!-- Botón para abrir la ubicación en Google Maps -->
-        <button 
-            class="location-button"
-            onclick="window.open('https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3924.3856603782115!2d-75.5480767252008!3d10.390912389735385!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8ef62f46654ac155%3A0xae80dd34e5d10c23!2sClub%20Naval!5e0!3m2!1ses!2sco!4v1732838186451!5m2!1ses!2sco', '_blank')">
-            Ver ubicación
-        </button>
-       <!-- <div class="map-container">
-            <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3924.3856603782115!2d-75.5480767252008!3d10.390912389735385!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8ef62f46654ac155%3A0xae80dd34e5d10c23!2sClub%20Naval!5e0!3m2!1ses!2sco!4v1732838186451!5m2!1ses!2sco" 
-            loading="lazy" 
-            referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
-        </div>-->
+
         <p>Únete a nosotros en este día tan especial para celebrar el amor y la felicidad.</p>
 
         <div class="carousel">
