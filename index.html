@@ -46,14 +46,14 @@
         }
 
         .hero .ayd {
-            font-size: 1.2em;
-            margin-top: 10px;
+            font-size: 1.5em;
+            margin-top: 15px;
             animation: fadeIn 3s ease-in-out;
             color: #f4f6f9;
         }
-        .hero p .versiculo {
-            font-size: 1.2em;
-            margin-top: 10px;
+        .hero .versiculo {
+            font-size: 1.1em;
+            margin-top: 0px;
             animation: fadeIn 3s ease-in-out;
             color: #111e33;
         }
@@ -65,6 +65,9 @@
             background: #faf6f6;
             border-radius: 10px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        .content p{
+            font-family:'Brush Script MT', cursive;
         }
 
         .content h2 {
@@ -236,13 +239,14 @@
         .logo {
             width: 100px;
             height: 100px;
+            margin-top: 10px;
         }
-        .contfecha {
+        .contfecha, .contitinerario, .cvestimenta{
             position: relative;
             display: inline-block;
             width: 100%;
         }
-        .fecha {
+        .fecha, .itinerario, .vestimenta{
             width: 100%; /* Ancho completo de la pantalla */
             max-width: 100%; /* Ancho máximo para pantallas grandes */
             height: auto; /* Altura fija inicial */
@@ -250,6 +254,7 @@
             overflow: hidden; /* Oculta las partes de la imagen que sobresalgan */
             
         }
+
         .contfecha button {
             position: absolute; /* Posicionar el botón sobre la imagen */
             top: 65%; /* Centrar verticalmente */
@@ -344,17 +349,14 @@
             <p>¡Tan fuerte es el amor como la muerte! <br>
                 ¡Tan cierta es la pasión como la tumba! <br></p>
         </div>
-        <h2>Codigo de vestimenta</h2>
-        <p>Hombres</p>
-        <div class="cFecha">
-            <img class="fecha" src="./images/1728014497434.jpg" alt="Formal">
-        </div>
-        <p>Mujeres</p>
-        <div class="cFecha">
-            <img class="fecha" src="./images/1728333412717.jpg" alt="Formal">
+        <div class="cvestimenta">
+            <img class="vestimenta" src="images/vestimenta.png" alt="">
         </div>
         <p>¡El fuego del amor es una llama que Dios mismo ha encendido! <br>
             Cantares: 8:6</p>
+        <div class="contitinerario">
+            <img class="itinerario" src="images/Itinerario.png" alt="">
+        </div>
     </div>
 
     <div class="rsvp-form">
