@@ -1,0 +1,18 @@
+{
+    "name": "andeley/invitaciond-a",
+    "description": "invitacion",
+    "autoload": {
+        "psr-4": {
+            "Andeley\\InvitaciondA\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "angie"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "google/apiclient": "^2.0"
+    }
+}

@@ -4,6 +4,80 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Invitación de Boda</title>
+    <script>
+        const confirmarAsistencia = () => {
+            const url = window.location.href;
+            const id = new URL(url).searchParams.get('id');
+            const confirmacion = document.getElementById('confirmacion').value;
+
+            console.log('Enviando confirmación:', confirmacion); // Asegúrate de que esto muestre el valor esperado
+
+            if (!confirmacion) {
+                alert('Por favor ingresa la cantidad de cupos a confirmar.');
+                return;
+            }
+
+            fetch('google-sheets.php?id=' + id, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ confirmacion }) // Convertir a JSON
+            })
+            .then(response => response.json()) // Convertir la respuesta a JSON
+            .then(data => {
+                console.log('Respuesta del servidor:', data); // Verifica qué está enviando el servidor
+                if (data.success) {
+                    alert(data.message);
+                } else {
+                    alert('Error: ' + data.message);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        };
+
+
+
+        function obtenerDatos() {
+            const url = window.location.href;
+            const id = new URL(url).searchParams.get('id'); // Obtener el ID de la URL
+
+            fetch('google-sheets.php?id=' + id)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Si los datos se encuentran, los insertamos en los elementos correspondientes
+                        document.getElementById('nombres').textContent = data.data.nombres;
+                        document.getElementById('cupos').textContent = data.data.cupos;
+                    } else {
+                        alert('No se encontraron datos para este ID.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error al obtener los datos:', error);
+                    alert('Hubo un error al obtener los datos.');
+                });
+        }
+
+        // Llamamos a la función para obtener los datos cuando la página carga
+        document.addEventListener('DOMContentLoaded', () => {
+            // Llamamos a obtenerDatos cuando la página se haya cargado
+            obtenerDatos();
+
+            // Aseguramos que el botón de confirmación esté disponible para agregar el eventListener
+            const confirmarBtn = document.getElementById('confirmar-btn');
+            if (confirmarBtn) {
+                confirmarBtn.addEventListener('click', (event) => {
+                    console.log('Botón de confirmación clickeado'); // Verifica si el botón es clickeado
+                    event.preventDefault(); // Evitar recarga
+                    confirmarAsistencia();
+                });
+            } else {
+                console.error('El botón de confirmación no se encuentra en el DOM.');
+            }
+        });
+
+        
+    </script>
+
     <style>
          body {
             font-family: 'Georgia', serif;
@@ -46,12 +120,13 @@
         }
 
         .hero .ayd {
-            font-size: 1.5em;
+            font-size: 1.9em;
             margin-top: 15px;
             animation: fadeIn 3s ease-in-out;
             color: #f4f6f9;
+            font-family:'Brush Script MT', cursive;
         }
-        .hero .versiculo {
+        .versiculo {
             font-size: 1.1em;
             margin-top: 0px;
             animation: fadeIn 3s ease-in-out;
@@ -66,9 +141,6 @@
             border-radius: 10px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
-        .content p{
-            font-family:'Brush Script MT', cursive;
-        }
 
         .content h2 {
             color: #88a3d0;
@@ -77,8 +149,9 @@
         }
 
         .content p {
+            font-family:'Brush Script MT', cursive;
             line-height: 1.8;
-            font-size: 1.1em;
+            font-size: 1.5em;
         }
 
         .gallery {
@@ -127,7 +200,9 @@
             color: #4a4a4a;
             font-size: 0.9em;
         }
-
+        label{
+            display: block;
+        }
         @media (max-width: 600px) {
             .hero h1 {
                 font-size: 2em;
@@ -174,7 +249,7 @@
         }
         .carousel {
         position: relative;
-        max-width: 350px;
+        max-width: 40rem;
         margin: auto;
         overflow: hidden;
         border: 15px solid transparent;
@@ -207,7 +282,7 @@
         border-radius: 50%;
         }
         .carousel-buttons button:hover {
-        background-color: rgba(0, 0, 0, 0.8);
+        background-color: rgba(52, 106, 163, 0.8);
         }
 
         .countdown {
@@ -215,7 +290,7 @@
             justify-content: center;
             gap: 20px;
             margin-top: 50px;
-            margin-bottom: 5rem;
+            margin-bottom: 2rem;
         }
 
         .time-container {
@@ -241,12 +316,12 @@
             height: 100px;
             margin-top: 10px;
         }
-        .contfecha, .contitinerario, .cvestimenta{
+        .contfecha, .contitinerario, .cvestimenta, .contPadres, .lluviaS{
             position: relative;
             display: inline-block;
             width: 100%;
         }
-        .fecha, .itinerario, .vestimenta{
+        .fecha, .itinerario, .vestimenta, .padres, .regalos{
             width: 100%; /* Ancho completo de la pantalla */
             max-width: 100%; /* Ancho máximo para pantallas grandes */
             height: auto; /* Altura fija inicial */
@@ -270,6 +345,26 @@
             border: none;
             cursor: pointer;
             z-index: 1; /* Asegurar que el botón esté sobre la imagen */
+        }
+        .driveFotos p{
+            font-family:'Brush Script MT', cursive;
+            line-height: 1;
+            font-size: 2rem;
+            color: #222222;
+        }
+        #clic{
+            font-family:'Brush Script MT', cursive;
+            font-size: 1.5rem;
+            color: #222222;
+        }
+        .fotoUp{
+            width: 20rem;
+            height: 20rem;
+        }
+        .fotoPareja{
+            padding-top: 5rem;
+            width: 40rem;
+            height: 50rem;
         }
         /* Estilo responsivo para móviles */
         @media (max-width: 768px) { /* Pantallas menores a 768px */
@@ -297,10 +392,21 @@
         </p>
         <img class="logo" src="./images/LogoRecurso 4logodefayd3Bordes-8.png" alt="">
     </div>
-   <!-- <img class="imgNovios" src="./images/image1.png" alt="Foto de los Novios">-->
     
-
     <div class="content">
+        <div class="lluviaS">
+            <div class="regalos">
+                <img class="fotoPareja" src="images/foto6.jpg" alt="">
+            </div>
+        </div>
+        <div class="contPadres">
+            <img class="padres" src="./images/padres.png" alt=""> 
+        </div>
+        <div class="lluviaS">
+            <div class="regalos">
+                <img class="fotoPareja" src="images/foto7.jpg" alt="">
+            </div>
+        </div>
         <div class="contfecha">
             <img class="fecha" src="./images/fecha.png" alt="">
             <button 
@@ -338,9 +444,9 @@
 
         <div class="carousel">
             <div class="carousel-images">
-                <img src="./images/1728333412717.jpg" alt="Foto 1">
-                <img src="./images/20231231_104452.jpg" alt="Foto 2">
-                <img src="./images/20240106_110359.jpg" alt="Foto 3">
+                <img src="./images/foto24.jpg" alt="Foto 1">
+                <img src="./images/foto2.jpg" alt="Foto 2">
+                <img src="./images/foto5.jpg" alt="Foto 3">
             </div>
             <div class="carousel-buttons">
                 <button id="prev">❮</button>
@@ -354,19 +460,70 @@
         </div>
         <p>¡El fuego del amor es una llama que Dios mismo ha encendido! <br>
             Cantares: 8:6</p>
+        <div class="lluviaS">
+            <div class="regalos">
+                <img class="fotoPareja" src="images/foto8.jpg" alt="">
+            </div>
+        </div>
         <div class="contitinerario">
             <img class="itinerario" src="images/Itinerario.png" alt="">
         </div>
+        <div class="lluviaS">
+            <div class="regalos">
+                <img class="fotoPareja" src="images/foto9.jpg" alt="">
+            </div>
+        </div>
+        <div class="lluviaS">
+            <div class="regalos">
+                <img class="vestimenta" src="images/regalos.png" alt="">
+            </div>
+        </div>
+        <div class="lluviaS">
+            <div class="regalos">
+                <img class="fotoPareja" src="images/foto10.jpg" alt="">
+            </div>
+        </div>
+        <div class="driveFotos">
+            <p>Nos encantaría ver los recuerdos que tomes de nuestro día <br> por eso dejamos el siguiente drive para que nos los compartas</p>
+            <a href="https://drive.google.com/drive/folders/10AHDcF7YJ_BfGdDxQdfP1o_spcl-9BGS?usp=sharing" target="_blank">
+                 <img class="fotoUp" src="images/fotoUp.png" alt="Drive fotos">
+            </a>
+            <p id="clic">Click en la imágen para acceder al drive</p>
+        </div>
+        <div class="lluviaS">
+            <div class="regalos">
+                <img class="fotoPareja" src="images/foto11.jpg" alt="">
+            </div>
+        </div>
+        <div class="lluviaS">
+            <div class="regalos">
+                <img class="fotoPareja" src="images/foto4.jpg" alt="">
+            </div>
+        </div>
+        <div class="rsvp-form">
+            <div id="confirmacion-div">
+                <h2>Confirmación de Asistencia</h2>
+                <p>Tu invitación es válida para:</p>
+                <p><strong>Nombres:</strong> <span id="nombres">Cargando...</span></p>
+                <p><strong>Cupos disponibles:</strong> <span id="cupos">Cargando...</span></p>
+        
+                <form id="formConfirmacion">
+                    <label for="confirmacion">Número de cupos a confirmar:</label>
+                    <input type="number" id="confirmacion" name="confirmacion" min="1" max="5">
+                    <button id="confirmar-btn" type="button">Confirmar</button>
+                </form>
+            </div>
+            <br>
+            <p>Recuerda que la invitación es intrasferible. Si no te es posible acompañarnos por favor avisanos. <br> Si no nos confirmas tu asistencia entenderemos que no nos puedes acompañar y el cupo será reasignado.</p>
+        </div>
+        <div class="lluviaS">
+            <div class="regalos">
+                <img class="fotoPareja" src="images/foto13.jpg" alt="">
+            </div>
+        </div>
     </div>
 
-    <div class="rsvp-form">
-        <h3>Confirma tu asistencia</h3>
-        <form action="#" method="post">
-            <input type="text" name="nombre" placeholder="Tu nombre" required>
-            <input type="email" name="email" placeholder="Tu email" required>
-            <button type="submit">Confirmar</button>
-        </form>
-    </div>
+    
 
     <footer>
         <p>Gracias por ser parte de este día tan especial. ¡Te esperamos con mucho cariño!</p>
